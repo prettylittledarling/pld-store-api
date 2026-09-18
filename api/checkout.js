@@ -4,7 +4,7 @@ import { stripePost } from "../lib/stripe.js";
 
 const MAX_CART_LINES = 12;
 const DEFAULT_SITE_URL = "https://prettylittledarling.com";
-const FLAT_US_SHIPPING_CENTS = 599;
+const FLAT_US_SHIPPING_PRICE = "price_1UFg72GeZisUHvGCNippEM6W";
 
 function normalizeSiteUrl(value) {
   return String(value || DEFAULT_SITE_URL).replace(/\/$/, "");
@@ -93,20 +93,6 @@ export default async function handler(req, res) {
     );
     params.set("cancel_url", `${siteUrl}/shop`);
 
-    params.set("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
-    params.set(
-      "shipping_options[0][shipping_rate_data][fixed_amount][amount]",
-      String(FLAT_US_SHIPPING_CENTS)
-    );
-    params.set(
-      "shipping_options[0][shipping_rate_data][fixed_amount][currency]",
-      "usd"
-    );
-    params.set(
-      "shipping_options[0][shipping_rate_data][display_name]",
-      "Standard U.S. Shipping"
-    );
-
     validated.forEach((item, index) => {
       const prefix = `line_items[${index}]`;
       params.set(`${prefix}[quantity]`, String(item.quantity));
@@ -130,6 +116,10 @@ export default async function handler(req, res) {
       params.set(`metadata[item_${index}_variant]`, String(item.variant_id));
       params.set(`metadata[item_${index}_quantity]`, String(item.quantity));
     });
+
+    const shippingIndex = validated.length;
+    params.set(`line_items[${shippingIndex}][quantity]`, "1");
+    params.set(`line_items[${shippingIndex}][price]`, FLAT_US_SHIPPING_PRICE);
 
     params.set("metadata[item_count]", String(validated.length));
     params.set("metadata[source]", "prettylittledarling.com");
