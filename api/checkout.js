@@ -4,7 +4,7 @@ import { stripePost } from "../lib/stripe.js";
 
 const MAX_CART_LINES = 12;
 const DEFAULT_SITE_URL = "https://prettylittledarling.com";
-const FLAT_US_SHIPPING_PRICE = "price_1UFg72GeZisUHvGCNippEM6W";
+const FLAT_US_SHIPPING_CENTS = 599;
 
 function normalizeSiteUrl(value) {
   return String(value || DEFAULT_SITE_URL).replace(/\/$/, "");
@@ -81,7 +81,6 @@ export default async function handler(req, res) {
 
     const params = new URLSearchParams();
     params.set("mode", "payment");
-    params.set("customer_creation", "always");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
     params.set("phone_number_collection[enabled]", "true");
     params.set("allow_promotion_codes", "true");
@@ -119,7 +118,15 @@ export default async function handler(req, res) {
 
     const shippingIndex = validated.length;
     params.set(`line_items[${shippingIndex}][quantity]`, "1");
-    params.set(`line_items[${shippingIndex}][price]`, FLAT_US_SHIPPING_PRICE);
+    params.set(`line_items[${shippingIndex}][price_data][currency]`, "usd");
+    params.set(
+      `line_items[${shippingIndex}][price_data][unit_amount]`,
+      String(FLAT_US_SHIPPING_CENTS)
+    );
+    params.set(
+      `line_items[${shippingIndex}][price_data][product_data][name]`,
+      "Flat U.S. Shipping"
+    );
 
     params.set("metadata[item_count]", String(validated.length));
     params.set("metadata[source]", "prettylittledarling.com");
