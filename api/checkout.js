@@ -85,7 +85,8 @@ export default async function handler(req, res) {
     params.set("phone_number_collection[enabled]", "true");
     params.set("allow_promotion_codes", "true");
 
-    const siteUrl = normalizeSiteUrl(process.env.PLD_SITE_URL);
+    const requestHost = req.headers.host ? `https://${req.headers.host}` : DEFAULT_SITE_URL;
+    const siteUrl = normalizeSiteUrl(process.env.PLD_CHECKOUT_SITE_URL || requestHost);
     params.set(
       "success_url",
       `${siteUrl}/order-success.html?session_id={CHECKOUT_SESSION_ID}`
