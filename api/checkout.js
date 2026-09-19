@@ -5,6 +5,12 @@ import { stripePost } from "../lib/stripe.js";
 const MAX_CART_LINES = 12;
 const DEFAULT_SITE_URL = "https://pld-store-api.vercel.app";
 const FLAT_US_SHIPPING_CENTS = 599;
+const DISPLAY_NAMES = {
+  "6aad7df9258e597d3c096968": "Cherub Kindle Case",
+  "6aa1cd65e1edeec9d80b6a7d": "Darling Sweatpants",
+  "6aa1cceb2e99cde0f10a768f": "Reading Cherub Tote",
+  "6aa19491a0b408082b0084ae": "Feral Tee"
+};
 
 function normalizeSiteUrl(value) {
   return String(value || DEFAULT_SITE_URL).replace(/\/$/, "");
@@ -70,7 +76,7 @@ export default async function handler(req, res) {
         variant_id: variantId,
         quantity,
         unit_amount: unitAmount,
-        product_title: product.title,
+        product_title: DISPLAY_NAMES[productId] || product.title,
         variant_title: variant.title || "Standard",
         image:
           product.images?.find((image) => image.is_default)?.src ||
