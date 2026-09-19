@@ -1,15 +1,199 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>PLD Store API</title>
+  <title>Pretty Little Darling | Shop</title>
+  <meta name="description" content="Books, beautiful things, and a little bad behavior. Shop Pretty Little Darling merch.">
+  <style>
+    :root{--bg:#0b0b0c;--panel:#141416;--cream:#f5efe5;--muted:#b8b0aa;--pink:#ff3ca6;--pink2:#ff8dcc;--line:#2a2a2e}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--cream);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none} button,select{font:inherit}
+    .topbar{padding:10px 20px;text-align:center;background:var(--pink);color:#111;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    header{position:sticky;top:0;z-index:20;background:rgba(11,11,12,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:17px 20px}
+    .brand{font-family:Georgia,serif;font-size:24px;font-weight:700;letter-spacing:.02em}.brand span{color:var(--pink)}
+    .navlinks{display:flex;gap:20px;align-items:center;font-size:14px}.navlinks a:hover{color:var(--pink)}
+    .cartbtn{border:1px solid var(--pink);background:transparent;color:var(--cream);border-radius:999px;padding:10px 15px;cursor:pointer;font-weight:700}
+    .hero{max-width:1180px;margin:0 auto;padding:76px 20px 46px;text-align:center}
+    .eyebrow{color:var(--pink);font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+    h1{font-family:Georgia,serif;font-size:clamp(44px,8vw,88px);line-height:.92;margin:15px auto 18px;max-width:920px}
+    .hero p{max-width:680px;margin:auto;color:var(--muted);font-size:17px;line-height:1.6}
+    .spray{width:210px;height:7px;margin:28px auto 0;background:linear-gradient(90deg,transparent,var(--pink),var(--pink2),transparent);filter:blur(.7px);transform:rotate(-2deg)}
+    .shop{max-width:1180px;margin:auto;padding:10px 20px 90px}
+    .shophead{display:flex;justify-content:space-between;align-items:end;margin:30px 0 24px;gap:20px}
+    .shophead h2{font-family:Georgia,serif;font-size:34px;margin:0}.shophead p{color:var(--muted);margin:7px 0 0}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+    .photo{aspect-ratio:1/1;background:#f4f1ec;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .body{padding:18px;display:flex;flex-direction:column;gap:13px;flex:1}
+    .title{font-family:Georgia,serif;font-size:23px}.price{color:var(--pink);font-weight:800;font-size:17px}
+    .variant{width:100%;background:#0d0d0f;border:1px solid #38383e;color:var(--cream);border-radius:10px;padding:11px}
+    .add{width:100%;border:0;border-radius:10px;padding:13px 15px;background:var(--pink);color:#111;font-weight:900;cursor:pointer}.add:hover{filter:brightness(1.07)}
+    .loading,.empty{grid-column:1/-1;padding:60px 20px;text-align:center;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:35px 20px;color:var(--muted);text-align:center;font-size:13px}
+    .shade{position:fixed;inset:0;background:rgba(0,0,0,.66);z-index:40;display:none}.shade.open{display:block}
+    .drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);z-index:50;background:#101012;border-left:1px solid var(--line);transform:translateX(105%);transition:.22s ease;display:flex;flex-direction:column}
+    .drawer.open{transform:none}.drawerhead{padding:21px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+    .drawerhead h3{font-family:Georgia,serif;font-size:27px;margin:0}.close{background:none;border:0;color:var(--cream);font-size:28px;cursor:pointer}
+    .cartitems{padding:14px 20px;overflow:auto;flex:1}.cartrow{display:grid;grid-template-columns:64px 1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+    .cartrow img{width:64px;height:64px;object-fit:cover;border-radius:8px;background:#eee}.cartname{font-weight:800}.cartmeta{color:var(--muted);font-size:12px;margin-top:5px}
+    .qty{display:flex;gap:7px;align-items:center;margin-top:9px}.qty button{width:27px;height:27px;border-radius:50%;border:1px solid #3b3b40;background:#17171a;color:var(--cream);cursor:pointer}
+    .remove{border:0;background:none;color:#ff8cbb;cursor:pointer;font-size:12px;padding:0;margin-top:7px}
+    .checkoutbox{border-top:1px solid var(--line);padding:20px}.subtotal{display:flex;justify-content:space-between;font-weight:800;margin-bottom:8px}.shipnote{font-size:12px;color:var(--muted);margin-bottom:14px}
+    .checkout{width:100%;border:0;border-radius:12px;padding:15px;background:var(--pink);font-weight:900;color:#111;cursor:pointer}.checkout:disabled{opacity:.55;cursor:not-allowed}
+    .status{font-size:12px;color:#ff9bcf;margin-top:10px;min-height:16px}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.navlinks a{display:none}}
+    @media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding-top:55px}.shophead{align-items:start;flex-direction:column}}
+  </style>
 </head>
-<body style="font-family:system-ui;padding:40px;background:#111;color:#fff">
-  <h1>Pretty Little Darling Store API</h1>
-  <p>The backend is online.</p>
-  <p><a href="/api/health" style="color:#ff4da6">Check API health</a></p>
-  <p><a href="/api/shops" style="color:#ff4da6">View Printify shops</a></p>
-  <p><a href="/api/products" style="color:#ff4da6">View Printify products</a></p>
+<body>
+  <div class="topbar">Stay Pretty. Read Often. Live Beautifully.</div>
+  <header>
+    <div class="nav">
+      <a class="brand" href="https://prettylittledarling.com">Pretty Little <span>Darling</span></a>
+      <div class="navlinks">
+        <a href="https://prettylittledarling.com">Home</a>
+        <a href="#shop">Shop</a>
+        <button class="cartbtn" id="cartButton">Bag <span id="cartCount">0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Pretty Little Darling Shop</div>
+    <h1>Books, beautiful things, and a little bad behavior.</h1>
+    <p>Reader merch, soft things, feral things, and whatever else belongs in your cart.</p>
+    <div class="spray"></div>
+  </section>
+
+  <main class="shop" id="shop">
+    <div class="shophead">
+      <div><h2>Shop the collection</h2><p>Made to order and shipped in the U.S.</p></div>
+    </div>
+    <div class="grid" id="productGrid"><div class="loading">Loading the pretty things…</div></div>
+  </main>
+
+  <footer>© Pretty Little Darling. All rights reserved.</footer>
+
+  <div class="shade" id="shade"></div>
+  <aside class="drawer" id="drawer" aria-label="Shopping bag">
+    <div class="drawerhead"><h3>Your Bag</h3><button class="close" id="closeCart" aria-label="Close">×</button></div>
+    <div class="cartitems" id="cartItems"></div>
+    <div class="checkoutbox">
+      <div class="subtotal"><span>Merch subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="shipnote">$5.99 flat U.S. shipping is added at Stripe checkout.</div>
+      <button class="checkout" id="checkoutButton">Checkout securely</button>
+      <div class="status" id="status"></div>
+    </div>
+  </aside>
+
+  <script>
+    const DISPLAY_NAMES={
+      "6aad7df9258e597d3c096968":"Cherub Kindle Case",
+      "6aa1cd65e1edeec9d80b6a7d":"Darling Sweatpants",
+      "6aa1cceb2e99cde0f10a768f":"Reading Cherub Tote",
+      "6aa19491a0b408082b0084ae":"Feral Tee"
+    };
+    const state={products:[],cart:JSON.parse(localStorage.getItem("pld-cart")||"[]")};
+    const $=s=>document.querySelector(s);
+    const money=c=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format((Number(c)||0)/100);
+    const save=()=>{localStorage.setItem("pld-cart",JSON.stringify(state.cart));renderCart();};
+    function openCart(){ $("#shade").classList.add("open");$("#drawer").classList.add("open"); }
+    function closeCart(){ $("#shade").classList.remove("open");$("#drawer").classList.remove("open"); }
+    $("#cartButton").onclick=openCart;$("#closeCart").onclick=closeCart;$("#shade").onclick=closeCart;
+
+    function renderProducts(){
+      const grid=$("#productGrid");
+      if(!state.products.length){grid.innerHTML='<div class="empty">Nothing is available right now.</div>';return;}
+      grid.innerHTML=state.products.filter(p=>p.visible!==false).map(p=>{
+        const variants=(p.variants||[]).filter(v=>v.is_available!==false);
+        const name=DISPLAY_NAMES[p.id]||p.title;
+        const from=variants.length?Math.min(...variants.map(v=>Number(v.price)||0)):0;
+        return `<article class="card">
+          <div class="photo">${p.image?'<img src="'+p.image+'" alt="'+name.replace(/"/g,'&quot;')+'">':''}</div>
+          <div class="body">
+            <div class="title">${name}</div>
+            <div class="price">${variants.length>1?'From ':''}${money(from)}</div>
+            <select class="variant" id="v-${p.id}">
+              ${variants.map(v=>'<option value="'+v.id+'">'+v.title+' · '+money(v.price)+'</option>').join('')}
+            </select>
+            <button class="add" data-product="${p.id}" ${variants.length?'':'disabled'}>Add to bag</button>
+          </div>
+        </article>`;
+      }).join("");
+      document.querySelectorAll(".add").forEach(btn=>btn.onclick=()=>addToCart(btn.dataset.product));
+    }
+
+    function addToCart(productId){
+      const product=state.products.find(p=>p.id===productId);
+      const select=$("#v-"+CSS.escape(productId));
+      const variant=product?.variants?.find(v=>String(v.id)===String(select?.value));
+      if(!product||!variant)return;
+      const existing=state.cart.find(i=>i.product_id===product.id&&Number(i.variant_id)===Number(variant.id));
+      if(existing)existing.quantity=Math.min(20,existing.quantity+1);
+      else state.cart.push({product_id:product.id,variant_id:variant.id,quantity:1,title:DISPLAY_NAMES[product.id]||product.title,variant_title:variant.title,price:variant.price,image:product.image});
+      save();openCart();
+    }
+
+    function changeQty(index,delta){
+      const item=state.cart[index];if(!item)return;
+      item.quantity+=delta;
+      if(item.quantity<1)state.cart.splice(index,1);
+      if(item.quantity>20)item.quantity=20;
+      save();
+    }
+    function removeItem(index){state.cart.splice(index,1);save();}
+
+    function renderCart(){
+      const count=state.cart.reduce((n,i)=>n+i.quantity,0);
+      $("#cartCount").textContent=count;
+      const wrap=$("#cartItems");
+      if(!state.cart.length)wrap.innerHTML='<div class="empty">Your bag is empty.</div>';
+      else wrap.innerHTML=state.cart.map((i,idx)=>`<div class="cartrow">
+        <img src="${i.image||''}" alt="">
+        <div>
+          <div class="cartname">${i.title}</div>
+          <div class="cartmeta">${i.variant_title||''}</div>
+          <div class="qty"><button onclick="changeQty(${idx},-1)">−</button><span>${i.quantity}</span><button onclick="changeQty(${idx},1)">+</button></div>
+          <button class="remove" onclick="removeItem(${idx})">Remove</button>
+        </div>
+        <div>${money((Number(i.price)||0)*i.quantity)}</div>
+      </div>`).join("");
+      const total=state.cart.reduce((n,i)=>n+(Number(i.price)||0)*i.quantity,0);
+      $("#subtotal").textContent=money(total);
+      $("#checkoutButton").disabled=!state.cart.length;
+    }
+
+    async function checkout(){
+      const btn=$("#checkoutButton"),status=$("#status");
+      btn.disabled=true;btn.textContent="Opening checkout…";status.textContent="";
+      try{
+        const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:state.cart.map(i=>({product_id:i.product_id,variant_id:i.variant_id,quantity:i.quantity}))})});
+        const data=await response.json();
+        if(!response.ok||!data.url)throw new Error(data.error||"Checkout could not be started.");
+        location.href=data.url;
+      }catch(err){
+        status.textContent=err.message||"Checkout could not be started.";
+        btn.disabled=false;btn.textContent="Checkout securely";
+      }
+    }
+    $("#checkoutButton").onclick=checkout;
+
+    async function load(){
+      try{
+        const r=await fetch("/api/products",{cache:"no-store"});
+        const data=await r.json();
+        if(!r.ok)throw new Error(data.error||"Products failed to load.");
+        state.products=data.products||[];
+        renderProducts();
+        renderCart();
+      }catch(err){
+        $("#productGrid").innerHTML='<div class="empty">The shop could not load right now. Please try again in a moment.</div>';
+      }
+    }
+    renderCart();load();
+  </script>
 </body>
 </html>
