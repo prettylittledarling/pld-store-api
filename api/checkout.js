@@ -6,6 +6,7 @@ const MAX_CART_LINES = 12;
 const DEFAULT_SITE_URL = "https://pld-store-api.vercel.app";
 const FLAT_US_SHIPPING_CENTS = 599;
 const DISPLAY_NAMES = {
+  "6aad359ef04cab633704997c": "Darling Tee",
   "6aad7df9258e597d3c096968": "Cherub Kindle Case",
   "6aa1cd65e1edeec9d80b6a7d": "Darling Sweatpants",
   "6aa1cceb2e99cde0f10a768f": "Reading Cherub Tote",
