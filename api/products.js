@@ -24,7 +24,6 @@ export default async function handler(req, res) {
         title: variant.title,
         sku: variant.sku || null,
         price: variant.price,
-        cost: variant.cost ?? null,
         is_available: variant.is_available !== false
       }));
 
