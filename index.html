@@ -97,6 +97,10 @@
       "6aa1cceb2e99cde0f10a768f":"Reading Cherub Tote",
       "6aa19491a0b408082b0084ae":"Feral Tee"
     };
+    const CUSTOM_IMAGES={
+      "6aa19491a0b408082b0084ae":"/assets/feral-tee.jpg"
+    };
+    const productImage=p=>CUSTOM_IMAGES[p.id]||p.image;
     const state={products:[],cart:JSON.parse(localStorage.getItem("pld-cart")||"[]")};
     const $=s=>document.querySelector(s);
     const money=c=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format((Number(c)||0)/100);
@@ -111,9 +115,10 @@
       grid.innerHTML=state.products.filter(p=>p.visible!==false).map(p=>{
         const variants=(p.variants||[]).filter(v=>v.is_available!==false);
         const name=DISPLAY_NAMES[p.id]||p.title;
+        const image=productImage(p);
         const from=variants.length?Math.min(...variants.map(v=>Number(v.price)||0)):0;
         return `<article class="card">
-          <div class="photo">${p.image?'<img src="'+p.image+'" alt="'+name.replace(/"/g,'&quot;')+'">':''}</div>
+          <div class="photo">${image?'<img src="'+image+'" alt="'+name.replace(/"/g,'&quot;')+'">':''}</div>
           <div class="body">
             <div class="title">${name}</div>
             <div class="price">${variants.length>1?'From ':''}${money(from)}</div>
@@ -134,7 +139,7 @@
       if(!product||!variant)return;
       const existing=state.cart.find(i=>i.product_id===product.id&&Number(i.variant_id)===Number(variant.id));
       if(existing)existing.quantity=Math.min(20,existing.quantity+1);
-      else state.cart.push({product_id:product.id,variant_id:variant.id,quantity:1,title:DISPLAY_NAMES[product.id]||product.title,variant_title:variant.title,price:variant.price,image:product.image});
+      else state.cart.push({product_id:product.id,variant_id:variant.id,quantity:1,title:DISPLAY_NAMES[product.id]||product.title,variant_title:variant.title,price:variant.price,image:productImage(product)});
       save();openCart();
     }
 
