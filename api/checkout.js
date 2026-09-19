@@ -3,7 +3,7 @@ import { listProducts } from "../lib/printify.js";
 import { stripePost } from "../lib/stripe.js";
 
 const MAX_CART_LINES = 12;
-const DEFAULT_SITE_URL = "https://prettylittledarling.com";
+const DEFAULT_SITE_URL = "https://pld-store-api.vercel.app";
 const FLAT_US_SHIPPING_CENTS = 599;
 
 function normalizeSiteUrl(value) {
@@ -88,9 +88,9 @@ export default async function handler(req, res) {
     const siteUrl = normalizeSiteUrl(process.env.PLD_SITE_URL);
     params.set(
       "success_url",
-      `${siteUrl}/order-success?session_id={CHECKOUT_SESSION_ID}`
+      `${siteUrl}/order-success.html?session_id={CHECKOUT_SESSION_ID}`
     );
-    params.set("cancel_url", `${siteUrl}/shop`);
+    params.set("cancel_url", `${siteUrl}/`);
 
     validated.forEach((item, index) => {
       const prefix = `line_items[${index}]`;
