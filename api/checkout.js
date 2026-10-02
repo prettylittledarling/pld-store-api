@@ -1,6 +1,8 @@
 import { json, parseBody, setCors } from "../lib/http.js";
 import { listProducts } from "../lib/printify.js";
 import { stripePost } from "../lib/stripe.js";
+import stockCatalog from "../data/inventory.json" with {type:"json"};
+import {verifyReservation} from "../lib/stock-reservation.js";
 
 const MAX_CART_LINES = 12;
 const DEFAULT_SITE_URL = "https://pld-store-api.vercel.app";
@@ -38,12 +40,22 @@ export default async function handler(req, res) {
       return json(res, 400, { error: "Too many different items in one order." });
     }
 
-    const response = await listProducts();
+    const stockItems = requestedItems.filter(item => item.sku);
+    const reservation = stockItems.length ? verifyReservation(body.reservationToken, requestedItems) : null;
+    const response = requestedItems.some(item => !item.sku) ? await listProducts() : {data:[]};
     const products = Array.isArray(response?.data) ? response.data : [];
     const productMap = new Map(products.map((product) => [String(product.id), product]));
 
     const validated = [];
     for (const item of requestedItems) {
+      if (item.sku) {
+        const product=stockCatalog.find(product => product.sku===item.sku);
+        const reserved=reservation.items.find(line => line.sku===item.sku);
+        const quantity=positiveInteger(item.quantity);
+        if (!product || !quantity || quantity>product.quantity || quantity!==reserved?.quantity) return json(res,400,{error:"An inventory item is unavailable."});
+        validated.push({sku:product.sku,quantity,unit_amount:product.price,product_title:product.name,variant_title:"",image:null});
+        continue;
+      }
       const productId = String(item.product_id || item.productId || "");
       const variantId = positiveInteger(item.variant_id || item.variantId);
       const quantity = positiveInteger(item.quantity);
@@ -91,14 +103,19 @@ export default async function handler(req, res) {
     params.set("shipping_address_collection[allowed_countries][0]", "US");
     params.set("phone_number_collection[enabled]", "true");
     params.set("allow_promotion_codes", "true");
+    params.set("integration_identifier","pretty_little_darling_qmptxrsa");
+    if (reservation) {
+      params.set("expires_at",String(reservation.expiresAt));
+      params.set("metadata[stock_reservation]",reservation.id);
+    }
 
     const requestHost = req.headers.host ? `https://${req.headers.host}` : DEFAULT_SITE_URL;
     const siteUrl = normalizeSiteUrl(process.env.PLD_CHECKOUT_SITE_URL || requestHost);
     params.set(
       "success_url",
-      `${siteUrl}/order-success.html?session_id={CHECKOUT_SESSION_ID}`
+      body.storefront === "main" ? "https://prettylittledarling.com/order-success?session_id={CHECKOUT_SESSION_ID}" : `${siteUrl}/order-success.html?session_id={CHECKOUT_SESSION_ID}`
     );
-    params.set("cancel_url", `${siteUrl}/`);
+    params.set("cancel_url", body.storefront === "main" ? "https://prettylittledarling.com/cart" : `${siteUrl}/`);
 
     validated.forEach((item, index) => {
       const prefix = `line_items[${index}]`;
@@ -110,7 +127,7 @@ export default async function handler(req, res) {
       );
       params.set(
         `${prefix}[price_data][product_data][name]`,
-        `${item.product_title} — ${item.variant_title}`
+        item.variant_title ? `${item.product_title}: ${item.variant_title}` : item.product_title
       );
       if (item.image) {
         params.set(
@@ -119,9 +136,12 @@ export default async function handler(req, res) {
         );
       }
 
-      params.set(`metadata[item_${index}_product]`, item.product_id);
-      params.set(`metadata[item_${index}_variant]`, String(item.variant_id));
-      params.set(`metadata[item_${index}_quantity]`, String(item.quantity));
+    });
+    const podItems=validated.filter(item=>item.product_id);
+    podItems.forEach((item,index)=>{
+      params.set(`metadata[item_${index}_product]`,item.product_id);
+      params.set(`metadata[item_${index}_variant]`,String(item.variant_id));
+      params.set(`metadata[item_${index}_quantity]`,String(item.quantity));
     });
 
     const shippingIndex = validated.length;
@@ -136,11 +156,11 @@ export default async function handler(req, res) {
       "Flat U.S. Shipping"
     );
 
-    params.set("metadata[item_count]", String(validated.length));
+    params.set("metadata[item_count]", String(podItems.length));
     params.set("metadata[source]", "prettylittledarling.com");
-    params.set("metadata[fulfillment]", "printify");
+    params.set("metadata[fulfillment]", podItems.length ? "printify" : "merchant");
 
-    const session = await stripePost("/checkout/sessions", params);
+    const session = await stripePost("/checkout/sessions", params, reservation ? {"Idempotency-Key":`pld-stock-${reservation.id}`} : {});
 
     return json(res, 200, {
       id: session.id,

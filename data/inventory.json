@@ -1,0 +1,644 @@
+[
+  {
+    "sku": "PLD-U-0001",
+    "name": "Do Cows Meow?",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0002",
+    "name": "Little Blue Truck's Springtime",
+    "price": 700,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0003",
+    "name": "Hello, Little Dreamer for Little Ones",
+    "price": 700,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0004",
+    "name": "That's Not My Unicorn...",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0005",
+    "name": "That's Not My Panda...",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0006",
+    "name": "Minecraft: Blockopedia",
+    "price": 1400,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0007",
+    "name": "The World Needs Who You Were Made to Be",
+    "price": 700,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0008",
+    "name": "How to Catch a Unicorn",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0009",
+    "name": "How to Catch a Mermaid",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0010",
+    "name": "Star Wars: The Skywalker Collection, Episodes I–IX",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0011",
+    "name": "The Hamilton Affair",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0012",
+    "name": "Reminders of Him",
+    "price": 600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0013",
+    "name": "Graveminder",
+    "price": 1200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0014",
+    "name": "The Postmistress of Paris",
+    "price": 1200,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0015",
+    "name": "Lovers in Auschwitz: A True Story",
+    "price": 1400,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0016",
+    "name": "The Wicked Sea (Bk. 1)",
+    "price": 2200,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0017",
+    "name": "A Twisted Love Story",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0018",
+    "name": "Someone Like You/That Summer",
+    "price": 1200,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0019",
+    "name": "The Moon and More and Just Listen",
+    "price": 1200,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0020",
+    "name": "Good Night, Sister",
+    "price": 1200,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0021",
+    "name": "The Daydreams",
+    "price": 1400,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0022",
+    "name": "The Haunting",
+    "price": 1200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0023",
+    "name": "How to Be a Witch",
+    "price": 1500,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0024",
+    "name": "The Days I Loved You Most",
+    "price": 1500,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0025",
+    "name": "The Greatest Lie of All",
+    "price": 1500,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0026",
+    "name": "Wicked Saints (Something Dark and Holy, Vol. 1)",
+    "price": 1200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0027",
+    "name": "The Coven (Coven of Bones, Bk. 1)",
+    "price": 1600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0028",
+    "name": "The Cursed (Coven of Bones, Bk. 2)",
+    "price": 1600,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0029",
+    "name": "Blackthorn (Walmart Edition)",
+    "price": 2300,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0030",
+    "name": "Imperfect Women",
+    "price": 1400,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0031",
+    "name": "The Charmed Library",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0032",
+    "name": "LVOE. (Volume II)",
+    "price": 1500,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0033",
+    "name": "Gone Before Goodbye",
+    "price": 1600,
+    "quantity": 3
+  },
+  {
+    "sku": "PLD-N-0034",
+    "name": "Crazy Love You (Jones Cooper, Bk. 4)",
+    "price": 1000,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0035",
+    "name": "I Fell in Love With Hope",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0036",
+    "name": "The Serpent and the Wolf (Dark Inheritance Trilogy, Bk. 1)",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0037",
+    "name": "How to Break My Heart (Cinnamon Springs, Bk. 1)",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0038",
+    "name": "The Summer After You and Me",
+    "price": 1000,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0039",
+    "name": "Magpie",
+    "price": 1400,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0040",
+    "name": "The Falling (The Brightest Stars, Bk. 1)",
+    "price": 1400,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0041",
+    "name": "Masked Stalker",
+    "price": 1500,
+    "quantity": 7
+  },
+  {
+    "sku": "PLD-N-0042",
+    "name": "The Good Ship Reverence",
+    "price": 1900,
+    "quantity": 3
+  },
+  {
+    "sku": "PLD-N-0044",
+    "name": "Madame",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0045",
+    "name": "Blood on Her Tongue (Standard Edition)",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0046",
+    "name": "Keeping 13 (Standard Edition)",
+    "price": 2000,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0047",
+    "name": "Gallows Hill",
+    "price": 1600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0048",
+    "name": "Night of the Witch",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0049",
+    "name": "Daddy's Girl (Standard Edition)",
+    "price": 2000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0050",
+    "name": "My Darling Dreadful Thing",
+    "price": 1800,
+    "quantity": 0
+  },
+  {
+    "sku": "PLD-N-0051",
+    "name": "Dark in Her Veins",
+    "price": 2800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0052",
+    "name": "This Is For The Women Who Don't Give A Fuck - book",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-N-0053",
+    "name": "Bewitched (Standard Edition)",
+    "price": 1900,
+    "quantity": 0
+  },
+  {
+    "sku": "PLD-N-0054",
+    "name": "We Were Restless Things",
+    "price": 1800,
+    "quantity": 0
+  },
+  {
+    "sku": "PLD-N-0055",
+    "name": "Binding 13 (Standard Edition)",
+    "price": 2000,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0056",
+    "name": "Bespelled (Standard Edition)",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0057",
+    "name": "Baroque Crown Oval Photo Frame",
+    "price": 3100,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0058",
+    "name": "Baroque Crown Oval Photo Frame",
+    "price": 3200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0059",
+    "name": "Cement Little Angel Planter",
+    "price": 3900,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-G-0060",
+    "name": "Cement Little Angel Planter",
+    "price": 4800,
+    "quantity": 2
+  },
+  {
+    "sku": "PLD-N-0061",
+    "name": "Practical Magic: Deluxe Edition",
+    "price": 2200,
+    "quantity": 3
+  },
+  {
+    "sku": "PLD-G-0062",
+    "name": "Selenite Crescent Moon Bowl",
+    "price": 2200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0063",
+    "name": "Black Celestial Palmistry Hand Sculpture",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0064",
+    "name": "Cream Rascette Palmistry Hand Sculpture",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0065",
+    "name": "Gray Buddha Tealight / Offering Bowl Statue",
+    "price": 1600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0066",
+    "name": "Angel Aura Quartz Cluster",
+    "price": 800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0067",
+    "name": "Tree Agate Crystal Tower",
+    "price": 1200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0068",
+    "name": "Rainbow Moonstone Tower",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0069",
+    "name": "Garden Quartz (Lodolite) Palm Stone",
+    "price": 2200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0070",
+    "name": "White Sage Bundle",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-G-0071",
+    "name": "Himalayan Pink Salt Lamp",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0072",
+    "name": "A Good Girl's Guide to Murder",
+    "price": 800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0073",
+    "name": "Unite Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0074",
+    "name": "Restore Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0075",
+    "name": "The Night Thieves: Complete Series Omnibus",
+    "price": 2500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0076",
+    "name": "Necessary People",
+    "price": 800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0077",
+    "name": "Find Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0078",
+    "name": "Unravel Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0079",
+    "name": "Ignite Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0080",
+    "name": "I'll Always Be With You",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0081",
+    "name": "You Said I Was Your Favorite",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0082",
+    "name": "Twisted Love",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0083",
+    "name": "Promises We Meant to Keep",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0084",
+    "name": "A Million Kisses in Your Lifetime",
+    "price": 1500,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0085",
+    "name": "The Inmate",
+    "price": 1300,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0086",
+    "name": "Anatomy: A Love Story",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0087",
+    "name": "Twisted Games",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0088",
+    "name": "If Only I Had Told Her",
+    "price": 900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0089",
+    "name": "Want to Know a Secret?",
+    "price": 1300,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0090",
+    "name": "Defy Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0091",
+    "name": "Twisted Hate",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0092",
+    "name": "Shatter Me",
+    "price": 1000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-U-0093",
+    "name": "Columbine",
+    "price": 1300,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0001",
+    "name": "Blind Date with a Book No. 01",
+    "price": 1600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0002",
+    "name": "Blind Date with a Book No. 02",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0003",
+    "name": "Blind Date with a Book No. 03",
+    "price": 1600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0004",
+    "name": "Blind Date with a Book No. 04",
+    "price": 1600,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0005",
+    "name": "Blind Date with a Book No. 05",
+    "price": 2000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0006",
+    "name": "Blind Date with a Book No. 06",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0007",
+    "name": "Blind Date with a Book No. 07",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0008",
+    "name": "Blind Date with a Book No. 08",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0009",
+    "name": "Blind Date with a Book No. 09",
+    "price": 1900,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0010",
+    "name": "Blind Date with a Book No. 10",
+    "price": 1800,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0011",
+    "name": "Blind Date with a Book No. 11",
+    "price": 2000,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0012",
+    "name": "Blind Date with a Book No. 12",
+    "price": 2300,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0013",
+    "name": "Blind Date with a Book No. 13",
+    "price": 2200,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0014",
+    "name": "Blind Date with a Book No. 14",
+    "price": 2300,
+    "quantity": 1
+  },
+  {
+    "sku": "PLD-BD-0015",
+    "name": "Blind Date with a Book No. 15",
+    "price": 2200,
+    "quantity": 1
+  }
+]
