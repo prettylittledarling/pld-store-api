@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { sendOrderNotification } from "../lib/order-notifications.js";
 import { json } from "../lib/http.js";
 import {
   createOrder,
@@ -222,6 +223,24 @@ export default async function handler(req, res) {
     ) {
       const sessionId = event?.data?.object?.id;
       if (!sessionId) throw new Error("Webhook is missing Checkout Session ID.");
+
+      // Notify the merchant for every successful checkout, including signed books.
+      // This does not require Printify fulfillment to apply.
+      const paidSession = await retrieveCheckoutSession(sessionId);
+      try {
+        const notification = await sendOrderNotification(paidSession);
+        console.log("Stripe order notification result", {
+          event_id: event.id,
+          session_id: sessionId,
+          ...notification
+        });
+      } catch (emailError) {
+        // Email service errors must not block existing Printify order fulfillment.
+        console.error("Stripe order notification error", {
+          session_id: sessionId,
+          error: emailError.message
+        });
+      }
 
       const result = await fulfill(sessionId);
       console.log("Stripe fulfillment result", {
